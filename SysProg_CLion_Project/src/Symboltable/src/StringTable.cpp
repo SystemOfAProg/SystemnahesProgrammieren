@@ -2,7 +2,7 @@ using namespace std;
 #include <iostream>
 #include <iomanip>
 #include <cstring>
-#include "../includes/StringTable.h";
+#include "StringTable.h";
 
 StringTable::StringTable() {
     this->firstNode = new StringTabNode();

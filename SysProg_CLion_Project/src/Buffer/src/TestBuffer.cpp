@@ -1,7 +1,7 @@
 using namespace std;
 
-#include "../includes/Buffer.h"
-#include "../includes/TestBuffer.h"
+#include "Buffer.h"
+#include "TestBuffer.h"
 #include <iostream>
 
 int main(int argc, char **argv) {

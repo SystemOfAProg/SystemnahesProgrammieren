@@ -1,6 +1,6 @@
 using namespace std;
 #include <iostream>
-#include "../includes/Information.h";
+#include "Information.h";
 
 Information::Information(char* nameInStringTable, unsigned int key) {
     this->key = key;

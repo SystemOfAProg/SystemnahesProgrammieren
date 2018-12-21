@@ -8,9 +8,9 @@
 
 #include <iostream>
 #include <iomanip>
-#include "../includes/Symboltable.h"
-#include "../includes/StringTable.h"
-#include "../includes/StringTabNode.h"
+#include "Symboltable.h"
+#include "StringTable.h"
+#include "StringTabNode.h"
 
 Symboltable::Symboltable() {
 	this->stringTable = new StringTable();

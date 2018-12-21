@@ -1,7 +1,7 @@
 #ifndef STRINGTABLE_H_
 #define STRINGTABLE_H_
 
-#include "../includes/StringTabNode.h"
+#include "StringTabNode.h"
 
 class StringTable {
 	public:

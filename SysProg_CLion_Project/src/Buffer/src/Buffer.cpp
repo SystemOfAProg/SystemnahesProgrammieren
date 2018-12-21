@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#include "../includes/Buffer.h"
+#include "Buffer.h"
 
 #include <iostream>
 #include <fstream>

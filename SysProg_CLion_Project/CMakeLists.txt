@@ -11,20 +11,38 @@ set(CMAKE_CXX_STANDARD 14)
 # - Copy assets next to binary folder (file(COPY...))
 # - Create Executable with collected source files (add_executable)
 
-set(BUFFER_DIR "Buffer")
-set(SYMTAB_DIR "Symboltable")
+set(BUFFER_DIR "src/Buffer")
+set(SYMTAB_DIR "src/Symboltable")
+set(AUTOMAT_DIR "src/Automat")
+set(SCANNER_DIR "src/Scanner")
 
 include_directories(${BUFFER_DIR}/includes)
 include_directories(${SYMTAB_DIR}/includes)
+include_directories(${AUTOMAT_DIR}/includes)
+include_directories(${SCANNER_DIR}/includes)
 
 file(GLOB BUFFER_SOURCES "${BUFFER_DIR}/src/*.cpp")
 file(GLOB SYMTAB_SOURCES "${SYMTAB_DIR}/src/*.cpp")
+file(GLOB AUTOMAT_SOURCES "${AUTOMAT_DIR}/src/*.cpp")
+file(GLOB SCANNER_SOURCES "${SCANNER_DIR}/src/*.cpp")
 
 # ================= Buffer =====================
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Buffer/bin)
 file(COPY ${BUFFER_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR}/Buffer/)
 add_executable(TestBuffer ${BUFFER_SOURCES})
+add_library(BUFFER_LIB ${BUFFER_SOURCES})
 
 # ================= Symboltable =====================
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Symboltable/bin)
 add_executable(TestSymboltable ${SYMTAB_SOURCES})
+add_library(SYMTAB_LIB ${SYMTAB_SOURCES})
+
+# ================= Automat =====================
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Automat/bin)
+add_executable(TestAutomat ${AUTOMAT_SOURCES})
+add_library(AUTOMAT_LIB ${AUTOMAT_SOURCES})
+
+# ================= Scanner =====================
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Scanner/bin)
+add_executable(StartScanner ${SCANNER_SOURCES})
+target_link_libraries(StartScanner BUFFER_LIB SYMTAB_LIB AUTOMAT_LIB)

@@ -1,4 +1,4 @@
-#include "../includes/Symboltable.h"
+#include "Symboltable.h"
 #include <iostream>
 
 const char* symTabLexems[] = {

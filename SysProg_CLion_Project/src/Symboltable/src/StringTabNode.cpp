@@ -1,6 +1,6 @@
 using namespace std;
 #include <iostream>
-#include "../includes/StringTabNode.h";
+#include "StringTabNode.h";
 
 StringTabNode::StringTabNode() {
     this->init();
