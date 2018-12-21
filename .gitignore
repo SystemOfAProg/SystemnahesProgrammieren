@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# CMake Specific Files
+SysProg_CLion_Project/cmake-build-debug
+
+# CLion Specific Files
+SysProg_CLion_Project/.idea
