@@ -1,6 +1,7 @@
 using namespace std;
 #include <iostream>
 #include <iomanip>
+#include <cstring>
 #include "../includes/StringTable.h";
 
 StringTable::StringTable() {

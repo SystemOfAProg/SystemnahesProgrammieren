@@ -1,4 +1,4 @@
-#include "../includes/SymtabEntry.h"
+#include "../includes/SymTabEntry.h"
 #include <cstring>
 
 SymtabEntry::SymtabEntry(Information* info) {
