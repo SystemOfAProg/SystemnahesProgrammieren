@@ -6,6 +6,7 @@ using namespace std;
 int main(int argc, char **argv) {
 	Symboltable* symtab = new Symboltable;
 	Scanner* scanner = new Scanner(argv[1], symtab);
+	cout << "Start scanning program " << argv[1] << " and writing output to " << argv[2] << "." << endl;
 	ofstream output;
     output.open(argv[2]);
 	Token* t;

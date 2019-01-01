@@ -97,7 +97,7 @@ unsigned int Symboltable::hash(char* s) {
 int Symboltable::stringLength(char* lexem) {
 	char* current = lexem;
 	int stringLength = 0;
-	while ( *current != '\n' ) {
+	while ( *current != '\0' ) {
 		stringLength++;
 		current++;
 	}
