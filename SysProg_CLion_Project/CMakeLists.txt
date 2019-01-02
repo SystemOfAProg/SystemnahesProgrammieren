@@ -44,7 +44,7 @@ add_library(AUTOMAT_LIB ${AUTOMAT_SOURCES})
 
 # ================= Scanner =====================
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Scanner/bin)
-configure_file(${SCANNER_DIR}/assets/program_1.txt ${CMAKE_BINARY_DIR}/Scanner/assets/ COPYONLY)
+configure_file(${SCANNER_DIR}/assets/program_1.txt ${CMAKE_BINARY_DIR}/Scanner/assets/program_1.txt COPYONLY)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Scanner/output)
 add_executable(Scanner ${SCANNER_SOURCES})
 target_link_libraries(Scanner BUFFER_LIB SYMTAB_LIB AUTOMAT_LIB)
