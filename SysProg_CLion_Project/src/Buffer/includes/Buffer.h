@@ -17,6 +17,7 @@ class Buffer {
 		int getCurrentPositionInLine();
 		char getCurrentChar();
 		char returnCurrentChar();
+		void returnLastNCharacters(int count);
 		int fillUpBuffer(char*);
 		void printDebugInfo();
 		void printCurrentDirectory();

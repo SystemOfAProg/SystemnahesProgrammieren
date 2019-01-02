@@ -75,6 +75,12 @@ char Buffer::returnCurrentChar(){
 	return c;
 }
 
+void Buffer::returnLastNCharacters(int count){
+    for(int i = 0; i<count; i++) {
+    	this->returnCurrentChar();
+    }
+}
+
 // ================== Utilities for Buffer Reading ==================
 
 int Buffer::fillUpBuffer(char* bufferIndex) {

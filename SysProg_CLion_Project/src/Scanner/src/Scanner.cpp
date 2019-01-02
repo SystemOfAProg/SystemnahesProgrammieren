@@ -23,14 +23,14 @@ Scanner::~Scanner() {
 
 Token* Scanner::nextToken() {
 	while (!automat->isStop()) {
-		char symbol = buffer->getNextChar();
 		unsigned int line = buffer->getCurrentLine();
-		unsigned int column = buffer->getCurrentPositionInLine();
-		automat->read(symbol, line, column);
+        unsigned int column = buffer->getCurrentPositionInLine();
+        char symbol = buffer->getNextChar();
+        automat->read(symbol, line, column);
 	}
 	Token* token = createToken();
 	automat->getBack();
-	buffer->returnCurrentChar();
+	buffer->returnLastNCharacters(automat->getBack());
 	automat->reset();
 	return token;
 }
