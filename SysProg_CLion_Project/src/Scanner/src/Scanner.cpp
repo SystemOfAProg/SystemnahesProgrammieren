@@ -54,77 +54,77 @@ int Scanner::stringCompare( const char *s1, const char *s2) {
 }
 
 Token* Scanner::createToken() {
-	switch (automat->getLastFinalState()) {
+	switch (automat->getFinalState()) {
 		case Automat::Error:
 			return new Token(Token::Unknown, automat->getLine(), automat->getColumn(), NULL, NULL, *automat->getLexem());
 		case Automat::Identifier:
 			if (stringCompare(automat->getLexem(), "WHILE") == 0 | stringCompare(automat->getLexem(), "while") == 0) {
-				return new Token(Token::While, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::While, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			} else 	if (stringCompare(automat->getLexem(), "ELSE") == 0 | stringCompare(automat->getLexem(), "else") == 0) {
-				return new Token(Token::Else, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::Else, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			} else 	if (stringCompare(automat->getLexem(), "IF") == 0 | stringCompare(automat->getLexem(), "if") == 0) {
-				return new Token(Token::If, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::If, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			} else if (stringCompare(automat->getLexem(), "write") == 0){
-				return new Token(Token::Write, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::Write, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			} else if (stringCompare(automat->getLexem(), "read") == 0){
-				return new Token(Token::Read, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::Read, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			} else if (stringCompare(automat->getLexem(), "int") == 0){
-				return new Token(Token::Int, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::Int, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			} else {
-				return new Token(Token::Identifier, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), NULL, NULL);
+				return new Token(Token::Identifier, automat->getLine(), automat->getColumn(), symboltable->insert(automat->getLexem()), 0, 0);
 			}
 
 		case Automat::Integer: {
 			errno = 0;
-			long temp = std::strtol(automat->getLexem(), NULL, 10);
+			long temp = std::strtol(automat->getLexem(), 0, 10);
 			if (errno == ERANGE) {
-				return new Token(Token::Error, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::Error, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else{
-				return new Token(Token::Integer, automat->getLine(), automat->getColumn(), NULL, temp , NULL);
+				return new Token(Token::Integer, automat->getLine(), automat->getColumn(), NULL, temp , 0);
 			}
 		}
 		case Automat::DoubleAnd:
-			return new Token(Token::And,automat->getLine(), automat->getColumn(), NULL, NULL , NULL);
+			return new Token(Token::And,automat->getLine(), automat->getColumn(), NULL, 0 , 0);
 		case Automat::Equal:
-			return new Token(Token::Equal, automat->getLine(), automat->getColumn(), NULL, NULL , NULL);
+			return new Token(Token::Equal, automat->getLine(), automat->getColumn(), NULL, 0 , 0);
 		case Automat::Assign:
-			return new Token(Token::Assign, automat->getLine(), automat->getColumn(), NULL, NULL , NULL);
+			return new Token(Token::Assign, automat->getLine(), automat->getColumn(), NULL, 0 , 0);
 		case Automat::Colon:
-			return new Token(Token::Colon, automat->getLine(), automat->getColumn(), NULL, NULL , NULL);
+			return new Token(Token::Colon, automat->getLine(), automat->getColumn(), NULL, 0 , 0);
 		case Automat::ColonBetweenEqualFinal:
-			return new Token(Token::ColonBetweenEqual, automat->getLine(), automat->getColumn(), NULL, NULL , NULL);
+			return new Token(Token::ColonBetweenEqual, automat->getLine(), automat->getColumn(), NULL, 0 , 0);
 		case Automat::CommentFinal:
-			return new Token(Token::Comment, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+			return new Token(Token::Comment, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 		case Automat::Sign:
 			if (*automat->getLexem() == ';') {
-				return new Token(Token::Semicolon, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::Semicolon, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '+') {
-				return new Token(Token::Plus, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::Plus, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '-') {
-				return new Token(Token::Minus, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::Minus, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '*') {
-				return new Token(Token::Star, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::Star, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '<') {
-				return new Token(Token::LessThan, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::LessThan, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '>') {
-				return new Token(Token::GreaterThan, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::GreaterThan, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '!') {
-				return new Token(Token::Exclamation, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::Exclamation, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '(') {
-				return new Token(Token::LeftParent, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::LeftParent, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == ')') {
-				return new Token(Token::RightParent, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::RightParent, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '{') {
-				return new Token(Token::LeftCurved, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::LeftCurved, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '}') {
-				return new Token(Token::RightCurved, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::RightCurved, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == '[') {
-				return new Token(Token::LeftBracket, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::LeftBracket, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			} else if (*automat->getLexem() == ']') {
-				return new Token(Token::RightBracket, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+				return new Token(Token::RightBracket, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 			}
 		case Automat::Eof:
 		default:
-			return new Token(Token::Eof, automat->getLine(), automat->getColumn(), NULL, NULL, NULL);
+			return new Token(Token::Eof, automat->getLine(), automat->getColumn(), NULL, 0, 0);
 	}
 }

@@ -18,15 +18,14 @@ class Buffer {
 		char getCurrentChar();
 		char returnCurrentChar();
 		void returnLastNCharacters(int count);
-		int fillUpBuffer(char*);
 		void printDebugInfo();
 		void printCurrentDirectory();
 	private:
 		enum PositionChange {
-			nextLine,
-			stepForward,
-			stepBackward
-		};
+				nextLine,
+				stepForward,
+				stepBackward
+			};
 		char* next;
 		char* buffer1;
 		char* buffer2;
@@ -38,6 +37,7 @@ class Buffer {
 		int lastCharInBuffer;
 		int lastReadIndex;
 		void setPosition(PositionChange position);
+		int fillUpBuffer(char*);
 };
 
 #endif /* BUFFER_H_ */

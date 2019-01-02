@@ -37,13 +37,11 @@ void TestBuffer::testReturnCurrentChar() {
 	Buffer*  buffer;
 	buffer = new Buffer("../assets/buffer-test-file.txt", 123);
 	char c;
-	char returnCharacter;
 	do {
 		c = buffer->getNextChar();
 		if(c==NULL){
 			break;
 		} else {
-			returnCharacter = buffer->returnCurrentChar();
 			c = buffer->getNextChar();
 			cout << c;
 		}

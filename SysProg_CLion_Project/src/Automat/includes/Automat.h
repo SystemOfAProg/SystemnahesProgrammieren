@@ -8,56 +8,58 @@
 #ifndef Automat_H_
 #define Automat_H_
 
-#define DEFAULT_ARRAY_SIZE          20000
-#define NEW_SIZE                    20100
+#include "../../Buffer/includes/Buffer.h"
+
 
 class Automat {
 public:
-	enum State {
-			Start,
-			Identifier,
-			Integer,
-			Error,
-			Colon,
-			Assign,
-			Equal,
-			And,
-			DoubleAnd,
-			ColonBetweenEqual,
-			ColonBetweenEqualFinal,
-			CommentStart,
-			CommentClose,
-			CommentFinal,
-			Sign,
-			Eof,
-			Null
-		};
 	Automat();
 	virtual ~Automat();
-	void read(char c, unsigned int line, unsigned int column);
+	enum State {
+		Start,
+		Identifier,
+		Integer,
+		Colon,
+		Assign,
+		Equal,
+		And,
+		DoubleAnd,
+		LogicAnd,
+		ColonBetweenEqual,
+		ColonBetweenEqualFinal,
+		CommentStart,
+		CommentClose,
+		CommentFinal,
+		Sign,
+		Eof,
+		Null,
+		Error
+	};
+	void init();
+	void reset();
 	State getCurrentState();
-	State getLastFinalState();
-	int getBack();
+	State getFinalState();
 	char* getLexem();
+	int getBack();
+	bool isStop();
+	bool isAlpha(char c);
+	bool isDigit(char c);
+	bool isSign(char c);
+	bool isTerminatingOrBreak(char c);
+	bool addToLexem(char c);
+	void checkStartState(char c);
+	void read(char c, unsigned int line, unsigned int column);
 	unsigned int getLine();
 	unsigned int getColumn();
-	bool isStop();
-	void reset();
-	void clearLexem();
 private:
 	State currentState;
-	State lastFinalState;
-	int back;
+	State finalState;
 	bool stop;
+	int stepsBack;
 	char* lexem;
-	unsigned int sizeLexem;
-	unsigned int indexLexem;
+	unsigned int index;
 	unsigned int line;
 	unsigned int column;
-	bool isSign(char c);
-	bool isDigit(char c);
-	bool isAlpha(char c);
-	void addCharToLexem(char c);
 };
 
 #endif /* Automat_H_ */
