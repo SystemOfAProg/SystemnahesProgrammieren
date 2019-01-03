@@ -75,7 +75,7 @@ bool Automat::isSign(char c) {
 }
 
 bool Automat::isTerminatingOrBreak(char c){
-	return (c == '\0'  && c == '\n') ? true : false;
+	return (c == '\0'  && c == '\n');
 }
 
 bool Automat::addToLexem(char c) {
