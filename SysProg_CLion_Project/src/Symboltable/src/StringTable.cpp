@@ -7,9 +7,8 @@ using namespace std;
 StringTable::StringTable() {
     this->firstNode = new StringTabNode();
     this->currentNode = this->firstNode;
-    this->freePosition = (char*) this->firstNode->getVector();
+    this->freePosition = this->firstNode->getVector();
     this->freeSpace = this->firstNode->getSize();
-    // TODO: implement
 }
 
 StringTable::~StringTable() {
@@ -27,7 +26,6 @@ char* StringTable::insert(char* lexem) {
         this->freePosition[lexemCharacterCount] = '\0';
         this->freePosition += lexemCharacterCount+1;
         this->freeSpace -= lexemCharacterCount+1;
-        // std::cout << "> Insert new Lexem" << "\- Lexem: " << lexem << "\n - Length: " << lexemCharacterCount << "\n - Space left after adding: " << this->freeSpace << "\n - Added at: " << this->freePosition;
         return temporary;
     } else {
         return NULL;

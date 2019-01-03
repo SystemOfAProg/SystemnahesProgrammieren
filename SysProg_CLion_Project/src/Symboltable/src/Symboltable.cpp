@@ -108,6 +108,3 @@ unsigned int Symboltable::getTableSize() {
 	return this->TABLE_SIZE;
 }
 
-void Symboltable::initSymbols() {
-	
-}

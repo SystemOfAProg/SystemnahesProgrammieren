@@ -18,7 +18,6 @@ class Symboltable {
 		static const unsigned int TABLE_SIZE = 1024;
 		StringTable* stringTable;
 		SymtabEntry* table[TABLE_SIZE];
-		void initSymbols();
 		int stringLength(char* lexem);
 		void addEntryToTable(SymtabEntry* entry);
 };
