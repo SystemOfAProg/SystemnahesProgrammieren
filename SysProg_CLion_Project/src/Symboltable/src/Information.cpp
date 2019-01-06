@@ -5,6 +5,7 @@ using namespace std;
 Information::Information(char* nameInStringTable, unsigned int key) {
     this->key = key;
     this->name = nameInStringTable;
+    this->nodeType = Node::NodeType::noType;
 }
 
 Information::~Information() {
@@ -13,6 +14,14 @@ Information::~Information() {
 
 char* Information::getName() {
     return this->name;
+}
+
+void Information::setType(Node::NodeType type) {
+    this->nodeType = type;
+}
+
+Node::NodeType Information::getType() {
+    return this->nodeType;
 }
 
 bool Information::equals(char* lexem) {

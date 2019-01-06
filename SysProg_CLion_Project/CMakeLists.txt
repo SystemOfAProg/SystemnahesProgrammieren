@@ -3,28 +3,39 @@ cmake_minimum_required(VERSION 3.13)
 project(SystemnahesProgrammieren)
 set(CMAKE_CXX_STANDARD 14)
 
-# Preparing the Build:
-# - Define Variables for subdirectories with seperate projects (set)
-# - Define where to find header files for each project (include_directories)
-# Actual Build:
-# - Define subdir for binaries of each component (set(CMAKE_RUNTIME...))
-# - Copy assets next to binary folder (file(COPY...))
-# - Create Executable with collected source files (add_executable)
+# ================= Preparation =====================
 
-set(BUFFER_DIR "src/Buffer")
-set(SYMTAB_DIR "src/Symboltable")
+set(BUFFER_DIR  "src/Buffer")
+set(SYMTAB_DIR  "src/Symboltable")
 set(AUTOMAT_DIR "src/Automat")
 set(SCANNER_DIR "src/Scanner")
+set(PARSER_DIR  "src/Parser")
+
+# ================= Include Header Files =====================
 
 include_directories(${BUFFER_DIR}/includes)
 include_directories(${SYMTAB_DIR}/includes)
 include_directories(${AUTOMAT_DIR}/includes)
 include_directories(${SCANNER_DIR}/includes)
+include_directories(${PARSER_DIR}/includes)
 
-file(GLOB BUFFER_SOURCES "${BUFFER_DIR}/src/*.cpp")
-file(GLOB SYMTAB_SOURCES "${SYMTAB_DIR}/src/*.cpp")
+# ================= Declare Source Files =====================
+
+file(GLOB BUFFER_SOURCES  "${BUFFER_DIR}/src/*.cpp")
+file(GLOB SYMTAB_SOURCES  "${SYMTAB_DIR}/src/*.cpp")
 file(GLOB AUTOMAT_SOURCES "${AUTOMAT_DIR}/src/*.cpp")
 file(GLOB SCANNER_SOURCES "${SCANNER_DIR}/src/*.cpp")
+file(GLOB PARSER_SOURCES  "${PARSER_DIR}/src/*.cpp")
+
+# ================= Copying assets =====================
+
+configure_file(${PROJECT_SOURCE_DIR}/assets/program_1.txt ${CMAKE_BINARY_DIR}/Scanner/assets/program_1.txt COPYONLY)
+configure_file(${PROJECT_SOURCE_DIR}/assets/program_1.txt ${CMAKE_BINARY_DIR}/Parser/assets/program_1.txt COPYONLY)
+
+# ================= Create output directories =====================
+
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Parser/output)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Scanner/output)
 
 # ================= Buffer =====================
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Buffer/bin)
@@ -44,7 +55,12 @@ add_library(AUTOMAT_LIB ${AUTOMAT_SOURCES})
 
 # ================= Scanner =====================
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Scanner/bin)
-configure_file(${SCANNER_DIR}/assets/program_1.txt ${CMAKE_BINARY_DIR}/Scanner/assets/program_1.txt COPYONLY)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Scanner/output)
 add_executable(Scanner ${SCANNER_SOURCES})
+add_library(SCANNER_LIB ${SCANNER_SOURCES})
 target_link_libraries(Scanner BUFFER_LIB SYMTAB_LIB AUTOMAT_LIB)
+target_link_libraries(SCANNER_LIB BUFFER_LIB SYMTAB_LIB AUTOMAT_LIB)
+
+# ================= Parser =====================
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Parser/bin)
+add_executable(Parser ${PARSER_SOURCES})
+target_link_libraries(Parser SCANNER_LIB)

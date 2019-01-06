@@ -82,8 +82,7 @@ int main (int argc, char* argv[]){
 		if(automat->isStop()){
 			cout << "Lexem: ";
 			cout << automat->getLexem()<< endl;
-			cout << getEnumName(automat->getFinalState()) << endl;
-			// cout << "resetting automat..." << endl;
+            cout << getEnumName(automat->getFinalState()) << endl;
 			automat->init();
 			cout << "________________" << endl;
 		}

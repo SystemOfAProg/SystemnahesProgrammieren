@@ -18,6 +18,9 @@ int main(int argc, char **argv) {
 			case Token::Integer:
 				output << "Token " << t->typeToString() << "\t\tLine:\t" << t->getLine() << "\t\tColumn: " << t->getColumn() << "\t\tValue: " << t->getValue()<< endl;
 				break;
+			case Token::Int:
+				output << "Token " << t->typeToString() << "\t\t\tLine:\t" << t->getLine() << "\t\tColumn: " << t->getColumn() << endl;
+				break;
 			case Token::And:
 			case Token::Assign:
 			case Token::Plus:

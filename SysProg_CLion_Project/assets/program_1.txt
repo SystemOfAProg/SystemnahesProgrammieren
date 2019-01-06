@@ -1,0 +1,15 @@
+int n;
+int[2] m;
+n:=0;
+while(n<2) {
+    m[n] := n;
+    write(n);
+    write(m[n]);
+    n := n + 1;
+};
+if(n < 2) {
+    write(12345);
+} else {
+    read(n);
+};
+write(n);

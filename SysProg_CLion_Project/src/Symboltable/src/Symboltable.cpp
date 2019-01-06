@@ -14,6 +14,9 @@
 
 Symboltable::Symboltable() {
 	this->stringTable = new StringTable();
+	for(int i=0; i< this->TABLE_SIZE; i++) {
+		this->table[i] = NULL;
+	}
 }
 
 Symboltable::~Symboltable() {
@@ -39,7 +42,6 @@ SymtabEntry* Symboltable::insert(char* lexem) {
 }
 
 void Symboltable::addEntryToTable(SymtabEntry* entry) {
-	// Check, if SymtabEntry already exisits for this hashvalue
 	SymtabEntry* potentialEntry = this->table[entry->getInfo()->getKey()];
 	if(potentialEntry == NULL) {
 		this->table[entry->getInfo()->getKey()] = entry;

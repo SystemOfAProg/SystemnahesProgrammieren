@@ -7,6 +7,7 @@
 #include <iostream>
 
 Automat::Automat() {
+	this->lexem = NULL;
 	init();
 }
 
@@ -17,9 +18,20 @@ void Automat::init(){
 	this->currentState = Start;
 	this->finalState = Start;
 	this->stop = false;
-	this->lexem = new char[2048];
+	if(this->lexem == NULL) {
+		this->lexem = new char[this->LEXEM_SIZE];
+	}
+	this->resetLexem();
 	this->stepsBack = 0;
 	this->index = 0;
+}
+
+void Automat::resetLexem() {
+	int i = 0;
+	while(this->lexem != NULL && (this->lexem[0] != '\0' || i < this->LEXEM_SIZE)) {
+		this->lexem[i] = '\0';
+		i++;
+	}
 }
 
 Automat::State Automat::getCurrentState(){
@@ -67,7 +79,7 @@ bool Automat::isSign(char c) {
 }
 
 bool Automat::isTerminatingOrBreak(char c){
-	return (c == '\0'  && c == '\n') ? true : false;
+	return (c == '\0' || c == '\n' || c == '\r');
 }
 
 bool Automat::addToLexem(char c) {
@@ -101,7 +113,7 @@ void Automat::checkStartState(char c){
 	}else if(c == '&'){
 		this->currentState = And;
 		addToLexem(c);
-	}else if(c == ' ' || c == '\n'){
+	}else if(c == ' ' || c == '\n' || c == '\r'){
 		this->currentState = Start;
 	}else if(c == '\0'){
 		this->currentState = Eof;
