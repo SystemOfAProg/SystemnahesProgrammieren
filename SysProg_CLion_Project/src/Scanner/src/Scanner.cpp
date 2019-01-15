@@ -19,11 +19,11 @@ Token* Scanner::nextToken() {
 	int column = this->buffer->getCurrentPositionInLine();
 	while (!this->automat->isStop()) {
 		char c = buffer->getNextChar();
-		if(this->positionChangingChar(c)) {
+		this->automat->read(c);
+		if(this->positionChangingChar(c) && !this->automat->isStop()) {
 			line   = this->buffer->getCurrentLine();
 			column = this->buffer->getCurrentPositionInLine();
 		}
-		this->automat->read(c);
 	}
 	Token* token = this->createToken(line, column);
 	this->buffer->returnLastNCharacters(automat->getBack());
