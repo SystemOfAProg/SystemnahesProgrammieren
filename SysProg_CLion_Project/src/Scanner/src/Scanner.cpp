@@ -18,12 +18,21 @@ Token* Scanner::nextToken() {
 	int line   = this->buffer->getCurrentLine();
 	int column = this->buffer->getCurrentPositionInLine();
 	while (!this->automat->isStop()) {
-        this->automat->read(buffer->getNextChar());
+		char c = buffer->getNextChar();
+		if(this->positionChangingChar(c)) {
+			line   = this->buffer->getCurrentLine();
+			column = this->buffer->getCurrentPositionInLine();
+		}
+		this->automat->read(c);
 	}
 	Token* token = this->createToken(line, column);
 	this->buffer->returnLastNCharacters(automat->getBack());
 	this->automat->init();
 	return token;
+}
+
+bool Scanner::positionChangingChar(char c) {
+	return ((c == ' ') || (c == '\n'));
 }
 
 int Scanner::stringCompare( const char *string1, const char *string2) {

@@ -18,6 +18,7 @@ private:
 	Token* handleStateIdentifier(int line, int column);
 	Token* handleStateInteger(int line, int column);
 	Token* handleStateSign(int line, int column);
+	bool positionChangingChar(char c);
 	Automat* automat;
 	Buffer* buffer;
 	Symboltable* symboltable;
