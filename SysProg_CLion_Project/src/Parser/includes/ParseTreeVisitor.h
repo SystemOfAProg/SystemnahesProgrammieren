@@ -1,10 +1,3 @@
-/*
- * ParseTreeVisitor.h
- *
- *  Created on: 14.01.2017
- *      Author: yannick
- */
-
 #ifndef PARSER_INCLUDES_PARSETREEVISITOR_H_
 #define PARSER_INCLUDES_PARSETREEVISITOR_H_
 
@@ -36,11 +29,6 @@ class NodeStatementWrite;
 class NodeStatements;
 class NodeOpExp;
 
-/**
- * Abstrakte Basisklasse des Besuchers.
- * Alle Besucher müssen diese Klasse implementieren, um durch den Baum zu traversieren.
- * Mit der Methode "visitNode()" wird der entsprechende Knoten besucht, auf dem Operationen durchgeführt werden können.
- */
 class ParseTreeVisitor {
 public:
 	virtual ~ParseTreeVisitor() {}

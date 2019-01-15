@@ -1,10 +1,3 @@
-/*
- * Buffer.cpp
- *
- *  Created on: Sep 26, 2012
- *      Author: sofa1011
- */
-
 using namespace std;
 
 #include "Buffer.h"

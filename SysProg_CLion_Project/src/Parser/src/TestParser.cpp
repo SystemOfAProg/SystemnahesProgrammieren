@@ -1,8 +1,8 @@
 #include "../includes/Parser.h"
 #include "../includes/ParseTree.h"
 #include "../includes/ParseTreeVisitor.h"
-#include "../includes/ParseTreeVisitorType.h"
-#include "../includes/ParseTreeVisitorCode.h"
+#include "../includes/TypeChecker.h"
+#include "../includes/CodeGenerator.h"
 #include <iostream>
 
 using namespace std;
@@ -13,11 +13,11 @@ int main(int argc, char **argv) {
 		Parser* parser = new Parser(argv[1]);
 		ParseTree* tree = parser->parse();
 		cout << "[Parser]: Check types of code listed in " << argv[1] << endl;
-		ParseTreeVisitorType tc;
+		TypeChecker tc;
 		tc.typeCheck(tree);
 		if(argv[2] != NULL) {
 			cout << "[Parser]: Write generated code into " << argv[2] << endl;
-			ParseTreeVisitorCode mc;
+			CodeGenerator mc;
 			mc.makeCode(tree, argv[2]);
 		} else {
 			cerr << "[Parser]: Code could not be generated, because no output file was passed to the Parser." << endl;

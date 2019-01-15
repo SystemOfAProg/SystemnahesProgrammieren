@@ -1,10 +1,3 @@
-/*
- * Scanner.h
- *
- *  Created on: Sep 26, 2012
- *      Author: knad0001
- */
-
 #ifndef SCANNER_H_
 #define SCANNER_H_
 
@@ -19,13 +12,16 @@ public:
 	virtual ~Scanner();
 	Token* nextToken();
 	int main(int argc, char **argv);
-
 private:
-	int stringCompare( const char *s1, const char *s2);
+
+	int stringCompare( const char *string1, const char *string2);
+	Token* handleStateIdentifier(int line, int column);
+	Token* handleStateInteger(int line, int column);
+	Token* handleStateSign(int line, int column);
 	Automat* automat;
 	Buffer* buffer;
 	Symboltable* symboltable;
-	Token* createToken();
+	Token* createToken(int line, int column);
 };
 
 

@@ -1,0 +1,26 @@
+Token Identifier	Line:	1		Column: 5		Lexem: test
+Token Semicolon		Line:	1		Column: 9
+Token LeftBracket	Line:	2		Column: 4
+Token Integer		Line:	2		Column: 5		Value: 6
+Token RightBracket	Line:	2		Column: 6
+Token Identifier	Line:	2		Column: 8		Lexem: test2
+Token Semicolon		Line:	2		Column: 13
+Token Identifier	Line:	3		Column: 5		Lexem: test3
+Token Semicolon		Line:	3		Column: 10
+Token Identifier	Line:	4		Column: 1		Lexem: test
+Token Assign		Line:	4		Column: 6
+Token Integer		Line:	4		Column: 9		Value: 3
+Token Semicolon		Line:	4		Column: 10
+Token Identifier	Line:	5		Column: 1		Lexem: test2
+Token LeftBracket	Line:	5		Column: 6
+Token Integer		Line:	5		Column: 7		Value: 1
+Token RightBracket	Line:	5		Column: 8
+Token Assign		Line:	5		Column: 10
+Token Integer		Line:	5		Column: 13		Value: 455
+Token Semicolon		Line:	5		Column: 16
+Token Identifier	Line:	6		Column: 1		Lexem: test
+Token Assign		Line:	6		Column: 6
+Token Integer		Line:	6		Column: 9		Value: 4
+Token Plus		Line:	6		Column: 11
+Token Integer		Line:	6		Column: 13		Value: 5
+Token Semicolon		Line:	6		Column: 14

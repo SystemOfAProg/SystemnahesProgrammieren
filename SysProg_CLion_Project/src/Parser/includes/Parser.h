@@ -39,23 +39,23 @@ public:
 private:
 	Token* currentToken;
 	Scanner* scanner;
-	ParseTree* tree;
-	void nextToken();
-	void checkTokenError(Token::TType token);
-	bool checkToken(Token::TType token);
-	void exitExecutionAndThrowError(char* expectedTokenType);
-	char* tokenTypeToString(Token::TType type);
-	NodeProg* prog();
-	NodeDecls* decls();
-	NodeDecl* decl();
-	NodeArray* array();
-	NodeStatements* statements();
-	NodeStatement* statement();
-	NodeIndex* index();
-	NodeExp* exp();
-	NodeExp2* exp2();
-	NodeOpExp* opExp();
-	NodeOp* op();
+	ParseTree* parseTree;
+	void getNextTokenFromScanner();
+	void mandatoryCompareTokenType(Token::TType token);
+	bool safeCompareTokenType(Token::TType token);
+	void exitExecutionAndThrowError(const char* expectedTokenType);
+	const char* tokenTypeToString(Token::TType type);
+	NodeProg* parseNodePROG();
+	NodeDecls* parseNodeDECLS();
+	NodeDecl* parseNodeDECL();
+	NodeArray* parseNodeARRAY();
+	NodeStatements* parseNodeSTATEMENTS();
+	NodeStatement* parseNodeSTATEMENT();
+	NodeIndex* parseNodeINDEX();
+	NodeExp* parseNodeEXP();
+	NodeExp2* parseNodeEXP2();
+	NodeOpExp* parseNodeOP_EXP();
+	NodeOp* parseNodeOP();
 };
 
 

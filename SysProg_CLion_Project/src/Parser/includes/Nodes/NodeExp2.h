@@ -1,10 +1,3 @@
-/*
- * NodeExp2.h
- *
- *  Created on: 14.01.2017
- *      Author: yannick
- */
-
 #ifndef PARSER_INCLUDES_NODES_NODEEXP2_H_
 #define PARSER_INCLUDES_NODES_NODEEXP2_H_
 

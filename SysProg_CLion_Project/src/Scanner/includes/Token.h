@@ -1,10 +1,3 @@
-/*
- * Token.h
- *
- *  Created on: Nov 2, 2016
- *      Author: hede1021
- */
-
 #ifndef SCANNER_INCLUDES_TOKEN_H_
 #define SCANNER_INCLUDES_TOKEN_H_
 #include "../../Symboltable/includes/SymTabEntry.h"
@@ -52,7 +45,7 @@ public:
 	SymtabEntry* getSymtabEntry();
 	char getSymbol();
 	Token::TType getType();
-	char* typeToString();
+	const char* typeToString();
 private:
 	Token::TType type;
 	int line;

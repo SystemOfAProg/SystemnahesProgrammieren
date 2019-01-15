@@ -1,10 +1,3 @@
-/*
- * Token.cpp
- *
- *  Created on: Nov 2, 2016
- *      Author: hede1021
- */
-
 #include "../includes/Token.h"
 
 Token::Token(Token::TType type, int line, int column, SymtabEntry* symtabentry, unsigned long value, char symbol) {
@@ -44,7 +37,7 @@ Token::TType Token::getType() {
 	return type;
 }
 
-char* Token::typeToString() {
+const char* Token::typeToString() {
 	switch (this->type) {
 		case Token::Identifier:
 			return "Identifier";

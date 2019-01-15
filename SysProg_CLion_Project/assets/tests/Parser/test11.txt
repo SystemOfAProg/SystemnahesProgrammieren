@@ -1,0 +1,13 @@
+int[5] foo;
+
+:* comment *:
+int test;
+:* comment *:
+int test2;
+
+
+test := 3;
+
+
+
+:*read(foo);*:
