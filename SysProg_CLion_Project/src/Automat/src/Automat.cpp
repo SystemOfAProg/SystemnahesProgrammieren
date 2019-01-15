@@ -179,9 +179,14 @@ void Automat::read(char c) {
 			}
 			break;
 		case And:
-			if( !isTerminatingOrBreak(c) )
-				stepsBack++;
-			c == '&' ? this->finalState = LogicAnd : this->currentState = Error;
+			if(c == '&' ) {
+				this->finalState = LogicAnd;
+			} else {
+				if (!isTerminatingOrBreak(c)) {
+					stepsBack++;
+				}
+				this->currentState = Error;
+			}
 			stop = true;
 			break;
 		case ColonBetweenEqual:
