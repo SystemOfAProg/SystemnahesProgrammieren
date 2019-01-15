@@ -61,7 +61,7 @@ bool Automat::isAlpha(char c) {
 bool Automat::isDigit(char c) {
 	char digits[10] = {'0','1','2','3','4','5','6','7','8','9'};
 	bool isDigit = false;
-	for (int i=0; i <= 9; i++){
+	for (int i=0; i < 10; i++){
 		if(c == digits[i])
 			isDigit = true;
 	}
@@ -186,6 +186,7 @@ void Automat::read(char c) {
 					stepsBack++;
 				}
 				this->currentState = Error;
+				this->finalState = Error;
 			}
 			stop = true;
 			break;
