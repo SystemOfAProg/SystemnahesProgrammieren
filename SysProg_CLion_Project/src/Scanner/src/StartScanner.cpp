@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 				output  << "Token Comment  " << "\t\tLine:\t" << t->getLine() << "\t\tColumn: " << t->getColumn()  << endl;
 				break;
 			case Token::Error:
-				cerr << "error, overflow in line " << t->getLine()<< " column " << t->getColumn() << endl;
+				cerr << "Number out of integer range, line " << t->getLine()<< " column " << t->getColumn() << endl;
 				break;
 		}
 	}
