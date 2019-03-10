@@ -3,6 +3,8 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 
+// This is a test, if I can get this line committed from my iPad
+
 int main(int argc, char **argv) {
 	Symboltable* symtab = new Symboltable;
 	Scanner* scanner = new Scanner(argv[1], symtab);
